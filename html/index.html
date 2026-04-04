@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell - Boutique de Mode</title>
+    <link rel="stylesheet" href="../css/index.css">
+    
+</head>
+<body>
+    <nav>
+        <div class="logo">Sell</div>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenue sur notre plateforme</h1>
+            <p>Découvrez les tendances qui définissent votre style.</p>
+            <button onclick="window.location.href='pagep.html'">Voir les produits</button>
+        </div>
+    </section>
+
+    <section class="products-grid">
+        <div class="product-card">
+            <a href="pagep1.html">
+                <img src="../image/1.jpg" alt="Collection Homme Tendance">
+            </a>
+        </div>
+
+        <div class="product-card">
+            <a href="pagep2.html">
+                <img src="../image/HTNJJ2NTKNDQJFNF2GDPWXAN4M.jpg" alt="Nouvelle Collection Femme">
+            </a>
+        </div>
+
+        <div class="product-card">
+            <a href="pagep3.html">
+                <img src="../image/basique-everlane-uniform.jpg" alt="Gamme Basiques Intemporels">
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sell</h3>
+                <p>Soyez tendance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Aide</h4>
+                <a href="#">Livraison</a>
+                <a href="#">Retours</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sell. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        // On attend que le DOM soit chargé
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.product-card img');
+
+    images.forEach(img => {
+        // Animation quand la souris entre sur l'image
+        img.addEventListener('mouseenter', () => {
+            img.style.transform = 'scale(1.1)';
+            img.style.filter = 'brightness(90%)';
+        });
+
+        // Animation quand la souris sort de l'image
+        img.addEventListener('mouseleave', () => {
+            img.style.transform = 'scale(1)';
+            img.style.filter = 'brightness(100%)';
+        });
+    });
+
+    // --- Animation spécifique pour la section HERO (Background) ---
+    const heroSection = document.querySelector('.hero');
+
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', () => {
+            // On ajoute la classe CSS créée plus haut
+            heroSection.classList.add('zoom-effect');
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            // On retire la classe quand la souris sort
+            heroSection.classList.remove('zoom-effect');
+        });
+    }
+
+    // Effet d'apparition au scroll pour les sections
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease-out';
+        observer.observe(card);
+    });
+});
+    </script>
+</body>
+</html>
