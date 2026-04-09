@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+     <nav>
+        <div class="logo">Sell</div>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Connexion</a></li>
+        </ul>
+     </nav>
+      <section class="hero">
+        <div class="hero-content">
+            <h1>Trouvez votre sac parfait</h1>
+            <p>Découvrez notre sélection de sacs de luxe.</p>
+        </div>
+     </section>
+    
+    <section class="product-detail-container">
+        <div class="product-image-side">
+            <img src="C:\Users\YARIE DEEN COUMBASSA\OneDrive\Bureau\Sell\image\Birkin.webp" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Hermes</span>
+            <h1>Birkin</h1>
+            <p class="price">120 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Icône absolue du luxe, le Hermès Birkin est bien plus qu’un sac à main : c’est un symbole de prestige, d’élégance et de réussite.
+
+Fabriqué entièrement à la main par un artisan Hermès, chaque Birkin est une pièce unique, conçue avec des cuirs d’exception et un savoir-faire inégalé. Son design intemporel, à la fois spacieux et structuré, en fait le compagnon idéal du quotidien pour une femme moderne et raffinée.
+
+Reconnu dans le monde entier, le Birkin est également un objet de collection dont la valeur ne cesse de croître avec le temps.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier()">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande()">Valider la commande</button>
+            </div>
+        </div>
+      </section>
+       <section class="product-detail-container">
+        <div class="product-image-side">
+            <img src="C:\Users\YARIE DEEN COUMBASSA\OneDrive\Bureau\Sell\image\Chanel classic flap1.webp"  alt="Nom du produit" id="mainProductImg">
+        </div>
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Chanel</span>
+            <h1>Chanel Classic Flap</h1>
+            <p class="price">60 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Icône intemporelle de la mode, le Chanel Classic Flap incarne l’élégance parisienne et le raffinement absolu.
+
+Créé dans l’héritage de Coco Chanel, ce sac mythique se distingue par son cuir matelassé emblématique, sa chaîne entrelacée de cuir et son fermoir iconique à double C.
+
+À la fois chic et pratique, il accompagne parfaitement toutes vos tenues, du quotidien aux occasions les plus sophistiquées.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier()">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande()">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+    <section class="product-detail-container">
+        <div class="product-image-side">
+            <img src="C:\Users\YARIE DEEN COUMBASSA\OneDrive\Bureau\Sell\image\Dior.webp" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Dior</span>
+            <h1>Dior Lady Dior</h1>
+            <p class="price">45 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Symbole de grâce et de raffinement, le Dior Lady Dior incarne l’élégance intemporelle et le savoir-faire de la maison Dior.
+
+Reconnu pour son design structuré et ses surpiqûres iconiques “Cannage”, ce sac d’exception est sublimé par ses célèbres charms métalliques “D.I.O.R”, apportant une touche de sophistication unique à chaque mouvement.
+
+Porté par des icônes de style comme Princess Diana, le Lady Dior est devenu un véritable emblème de féminité et de prestige.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier()">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande()">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+     <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sell</h3>
+                <p>Votre destination mode incontournable.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Sell.</div>
+     </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
