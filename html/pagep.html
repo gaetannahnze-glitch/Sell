@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link rel="stylesheet" href="../css/pagep2.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">Sell</div>
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            
+            <li id="auth-link"><a href="login.html">Connexion</a></li>
+        </ul>
+    </nav>
+      <section class="hero">
+        <div class="hero-content">
+            <h1>Trouvez ce qui vous definit</h1>
+            <p>Découvrez notre sélection de produits de luxe.</p>
+        </div>
+     </section>
+    
+    <section class="product-detail-container" data-id="2">
+        <div class="product-image-side">
+            <img src="../image/Birkin.webp" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Hermes</span>
+            <h1>Birkin</h1>
+            <p class="price">120 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Icône absolue du luxe, le Hermès Birkin est bien plus qu’un sac à main : c’est un symbole de prestige, d’élégance et de réussite.
+
+Fabriqué entièrement à la main par un artisan Hermès, chaque Birkin est une pièce unique, conçue avec des cuirs d’exception et un savoir-faire inégalé. Son design intemporel, à la fois spacieux et structuré, en fait le compagnon idéal du quotidien pour une femme moderne et raffinée.
+
+Reconnu dans le monde entier, le Birkin est également un objet de collection dont la valeur ne cesse de croître avec le temps.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+      </section>
+       <section class="product-detail-container" data-id="2">
+        <div class="product-image-side">
+            <img src="../image/Chanel classic flap1.webp"  alt="Nom du produit" id="mainProductImg">
+        </div>
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Chanel</span>
+            <h1>Chanel Classic Flap</h1>
+            <p class="price">60 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Icône intemporelle de la mode, le Chanel Classic Flap incarne l’élégance parisienne et le raffinement absolu.
+
+Créé dans l’héritage de Coco Chanel, ce sac mythique se distingue par son cuir matelassé emblématique, sa chaîne entrelacée de cuir et son fermoir iconique à double C.
+
+À la fois chic et pratique, il accompagne parfaitement toutes vos tenues, du quotidien aux occasions les plus sophistiquées.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+    <section class="product-detail-container" data-id="2">
+        <div class="product-image-side">
+            <img src="../image/Dior.webp" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Dior</span>
+            <h1>Dior Lady Dior</h1>
+            <p class="price">45 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Symbole de grâce et de raffinement, le Dior Lady Dior incarne l’élégance intemporelle et le savoir-faire de la maison Dior.
+
+Reconnu pour son design structuré et ses surpiqûres iconiques “Cannage”, ce sac d’exception est sublimé par ses célèbres charms métalliques “D.I.O.R”, apportant une touche de sophistication unique à chaque mouvement.
+
+Porté par des icônes de style comme Princess Diana, le Lady Dior est devenu un véritable emblème de féminité et de prestige.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+    <section class="product-detail-container" data-id="1">
+        <div class="product-image-side">
+            <img src="../image/Rolex sky-dweller.jpg" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Rolex</span>
+            <h1>Rolex Sky-Dweller</h1>
+            <p class="price">180 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Découvrez l’excellence horlogère avec la Rolex Sky-Dweller, une montre d’exception conçue pour les voyageurs modernes et les amateurs de luxe.
+
+Alliant innovation technique et élégance intemporelle, ce modèle emblématique se distingue par son double fuseau horaire et son calendrier annuel intelligent, vous permettant de garder le contrôle du temps, où que vous soyez dans le monde.
+
+Son boîtier de 42 mm, associé à une finition raffinée (acier, or ou bicolore), offre une présence élégante au poignet, tandis que son cadran sophistiqué assure une lisibilité parfaite.
+
+Grâce à son système exclusif Ring Command, la Sky-Dweller permet un réglage simple et intuitif de toutes ses fonctions, une prouesse rare dans l’univers de l’horlogerie de luxe.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+<section class="product-detail-container" data-id="1">
+        <div class="product-image-side">
+            <img src="../image/AP Royal Oak Concept.png" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name"> Marque : Audemars Piguet</span>
+            <h1>Audemars Piguet Royal Oak Concept</h1>
+            <p class="price">1 500 000 MAD</p>
+
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Entrez dans une nouvelle dimension de l’horlogerie avec la Audemars Piguet Royal Oak Concept, une montre d’avant-garde qui repousse les limites du design et de la technologie.
+
+Véritable œuvre d’ingénierie, ce modèle incarne l’innovation extrême à travers un design futuriste, un cadran ajouré spectaculaire et des complications horlogères de très haut niveau. Pensée comme un laboratoire d’expérimentation, la Royal Oak Concept est destinée aux passionnés en quête dexclusivité absolue.
+
+Son boîtier imposant, souvent conçu en titane ou matériaux high-tech, offre une robustesse exceptionnelle tout en conservant une esthétique ultra-moderne. Chaque détail révèle un savoir-faire unique, signature de la manufacture Audemars Piguet.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+    <section class="product-detail-container" data-id="1">
+        <div class="product-image-side">
+            <img src="../image/Cartier Tank.webp" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Cartier</span>
+            <h1>Cartier Tank</h1>
+            <p class="price">50 000 MAD</p>
+
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Icône intemporelle de l’horlogerie, la Cartier Tank incarne l’élégance pure et le raffinement à la française.
+
+Inspirée des lignes des chars militaires, cette montre au design rectangulaire emblématique séduit depuis plus d’un siècle par sa simplicité sophistiquée. Son cadran épuré, ses chiffres romains et ses aiguilles bleuies offrent une lecture claire et un style immédiatement reconnaissable.
+
+Fine et discrète, la Cartier Tank s’adapte parfaitement à toutes les occasions, qu’il s’agisse d’un rendez-vous professionnel ou d’un événement élégant.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-detail-container" data-id="3">
+        <div class="product-image-side">
+            <img src="../image/Balmain.avif" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Balmain</span>
+            <h1>Robe Balmain glamour à sequins, drapée et ornée d’un bijou</h1>
+            <p class="price">41 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>
+Élégance et glamour s’unissent dans cette création Balmain, parfaite pour les grandes occasions et les soirées prestigieuses. La robe capture le raffinement de la maison française avec une touche contemporaine scintillante.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="product-detail-container" data-id="3">
+        <div class="product-image-side">
+            <img src="../image/LV.webp" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Louis Vuitton</span>
+            <h1>Coupe-vent Monogram réversible</h1>
+            <p class="price">28 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Ce coupe-vent léger et réversible propose deux styles différents. Un côté s'orne de l'imprimé Monogram Waterdrop graphique, composé de symboles Monogram ludiques évoquant des gouttes de pluie sur un fond élégant de carreaux prince-de-galles. L’envers s'habille d'un coloris gris foncé intemporel, rehaussé d’un motif jacquard Monogram ton sur ton très discret. Imperméable et pliable, cette pièce astucieuse se prête aux escapades à la campagne comme aux journées pluvieuses en ville.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="product-detail-container" data-id="3">
+        <div class="product-image-side">
+            <img src="../image/Tom Ford1.png" alt="Nom du produit" id="mainProductImg">
+        </div>
+
+        <div class="product-info-side">
+            <span class="brand-name">Marque : Tom Ford</span>
+            <h1>Master Twill Shelton Suit</h1>
+            <p class="price">50 000 MAD</p>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>Le Master Twill Shelton Suit incarne l’élégance moderne et le raffinement intemporel. Conçu pour l’homme sophistiqué, ce costume allie confort, style et fonctionnalité grâce à ses matériaux de haute qualité et sa coupe impeccable.</p>
+            </div>
+
+            <div class="product-options">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-secondary" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                
+                <button class="btn-primary" onclick="validerCommande(this)">Valider la commande</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+     <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sell</h3>
+                <p>Votre destination mode incontournable.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Sell.</div>
+     </footer>
+
+    <script src="../script/script.js"></script>
+</body>
+</html>

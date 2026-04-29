@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Dashboard Admin - Sell</title>
+    <link rel="stylesheet" href="../css/index.css"> <!-- Réutilise votre style global -->
+    <style>
+        .admin-container { padding: 40px; max-width: 1200px; margin: auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .stat-card h3 { color: #888; font-size: 0.9rem; margin-bottom: 10px; }
+        .stat-card p { font-size: 2rem; font-weight: bold; color: #2d3436; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #636e72; }
+        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; background: #e1f5fe; color: #0288d1; }
+
+  
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 300px;
+    padding: 20px auto ;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Tableau de Bord Admin</h1>
+        
+        <!-- Section Statistiques -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Utilisateurs</h3>
+                <p id="count-users">...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Commandes Totales</h3>
+                <p id="count-orders">...</p>
+            </div>
+            
+        </div>
+
+        <!-- Section Dernières Commandes -->
+        <h2>Dernières Commandes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody id="orders-table">
+                <!-- Injecté par JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+
+
+if (localStorage.getItem('user_role') !== 'admin') {
+    alert("Accès réservé aux administrateurs !");
+    window.location.href = "index.html";
+}
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Vérification de sécurité : l'utilisateur est-il admin ?
+            const role = localStorage.getItem('user_role');
+            if (role !== 'admin') {
+                alert("Accès refusé !");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Charger les données depuis le serveur
+            fetch('http://localhost:3000/admin/stats' )
+    .then(res => res.json())
+    .then(data => {
+        // 1. Mise à jour des compteurs en haut de page
+        document.getElementById('count-users').textContent = data.usersCount;
+        document.getElementById('count-orders').textContent = data.ordersCount;
+        
+        // 2. Remplissage du tableau des commandes
+        const table = document.getElementById('orders-table');
+        table.innerHTML = ""; // On vide le tableau avant d'ajouter pour éviter les doublons
+
+        data.recentOrders.forEach(order => {
+            // On définit une couleur différente selon le statut pour plus de clarté
+            const statusColor = order.statut === 'Expédiée' ? '#2d6a4f' : '#0288d1';
+            
+            table.innerHTML += `
+                <tr>
+                    <td>#${order.id}</td>
+                    <td>${order.client_nom}</td>
+                    <td>${new Date(order.date_commande).toLocaleDateString()}</td>
+                    <td>
+                        <span class="status-badge" style="background-color: ${statusColor}22; color: ${statusColor};">
+                            ${order.statut || 'En attente'}
+                        </span>
+                    </td>
+                    <td>
+                        <!-- Bouton pour changer le statut -->
+                        ${order.statut !== 'Expédiée' ? `
+                            <button onclick="changerStatut(${order.id}, 'Expédiée')" 
+                                    style="padding: 5px 10px; cursor: pointer; background: #1a1a1a; color: #fff; border: none; border-radius: 5px; font-size: 0.8rem;">
+                                Marquer comme Expédiée
+                            </button>
+                        ` : '<span style="color: #2d6a4f; font-size: 0.8rem;">✓ Terminé</span>'}
+                    </td>
+                </tr>
+            `;
+        });
+    });
+
+
+
+//  la fonction changerStatut 
+window.changerStatut = function(id, nouveauStatut) {
+    if (confirm("Voulez-vous marquer la commande #" + id + " comme " + nouveauStatut + " ?")) {
+        fetch('http://localhost:3000/admin/update-statut', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                commande_id: id, 
+                nouveau_statut: nouveauStatut 
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert("Statut mis à jour !");
+            window.location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Erreur lors de la mise à jour");
+        });
+    }
+};
+
+        });
+    </script>
+</body>
+</html>

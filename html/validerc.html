@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation de commande - Sell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/validerc.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Sell</div>
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            
+            <li id="auth-link"><a href="login.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <p class="label">Récapitulatif de votre sélection</p>
+
+            <!-- Section pour l'affichage d'un seul produit (si applicable ) -->
+            <div class="card" id="single-product-summary" style="display:none;">
+                <div class="image-placeholder">
+                    <img src="" alt="Produit choisi" id="productImageDisplay">
+                    <span id="placeholderText">Chargement de l'article...</span>
+                </div>
+
+                <div class="card-body">
+                    <h2>Valider votre commande</h2>
+                    <p class="product-name" id="productNameDisplay">Article de mode</p>
+
+                    <div class="info-row">
+                        <span class="key">Prix unitaire</span>
+                        <span class="val" id="singleProductUnitPrice"></span>
+                    </div>
+                    <div class="product-options">
+                        <label for="quantity">Quantité :</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1">
+                    </div>
+                    <div class="info-row">
+                        <span class="key">Livraison</span>
+                        <span class="val" style="color:#2d6a4f">Gratuite</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="total-block">
+                        <span class="total-label">Total à payer</span>
+                        <span class="total-amount" id="singleProductTotal"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section pour l'affichage du panier complet -->
+            <div class="card" id="full-cart-summary" style="display:none;">
+                <div id="liste-recap-produits">
+                    <!-- Les produits du panier seront injectés ici -->
+                </div>
+                <div class="divider"></div>
+                <div class="total-block">
+                    <span class="total-label">Total du panier</span>
+                    <span class="total-amount" id="fullCartTotal"></span>
+                </div>
+            </div>
+
+            <button class="btn" id="validateBtn">Confirmer l'achat</button>
+
+            <div class="success-msg" id="successMsg">
+                ✅ Commande confirmée — merci pour votre confiance !
+            </div>
+        </div>
+    </div>
+
+    <div class="badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Paiement sécurisé · Protection SSL
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sell</h3>
+                <p>Soyez tendance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Aide</h4>
+                <a href="#">Livraison</a>
+                <a href="#">Retours</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sell. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script src="../script/script.js"></script> <!-- Lien vers le script.js externe -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const produitsAValider = JSON.parse(localStorage.getItem("commande_finale")) || [];
+            const singleProductSummary = document.getElementById("single-product-summary");
+            const fullCartSummary = document.getElementById("full-cart-summary");
+            const listeRecapProduits = document.getElementById("liste-recap-produits");
+            const validateBtn = document.getElementById("validateBtn");
+            const successMsg = document.getElementById("successMsg");
+
+            let totalGeneral = 0;
+
+            if (produitsAValider.length === 1) {
+                // Affichage pour un seul produit
+                singleProductSummary.style.display = "block";
+                const prod = produitsAValider[0];
+
+                
+
+                document.getElementById("productImageDisplay").src = prod.image;
+                document.getElementById("productImageDisplay").style.display = "block";
+                document.getElementById("placeholderText").style.display = "none";
+                document.getElementById("productNameDisplay").textContent = prod.nom;
+                document.getElementById("singleProductUnitPrice").textContent = prod.prix.toLocaleString() + " MAD";
+
+                const qtyInput = document.getElementById("quantity");
+                qtyInput.value = prod.qte;
+
+                const mettreAJourTotal = () => {
+                    totalGeneral = prod.prix * qtyInput.value;
+                    document.getElementById("singleProductTotal").textContent = totalGeneral.toLocaleString() + " MAD";
+                };
+
+                mettreAJourTotal();
+                qtyInput.addEventListener("input", mettreAJourTotal);
+
+            } else if (produitsAValider.length > 1) {
+                // Affichage pour un panier complet
+                fullCartSummary.style.display = "block";
+                produitsAValider.forEach(prod => {
+                    const sousTotal = prod.prix * prod.qte;
+                    totalGeneral += sousTotal;
+
+                    listeRecapProduits.innerHTML += `
+                        <div class="recap-item" style="display:flex; align-items:center; padding:15px; border-bottom:1px solid #eee;">
+                            <img src="${prod.image}" style="width:60px; height:60px; object-fit:cover; border-radius:5px;">
+                            <div style="margin-left:15px; flex:1;">
+                                <h4 style="margin:0;">${prod.nom}</h4>
+                                <small>${prod.qte} x ${prod.prix.toLocaleString()} MAD</small>
+                            </div>
+                            <span style="font-weight:bold;">${sousTotal.toLocaleString()} MAD</span>
+                        </div>
+                    `;
+                });
+                document.getElementById("fullCartTotal").textContent = totalGeneral.toLocaleString() + " MAD";
+
+            } else {
+                // Si rien à valider, rediriger ou afficher un message
+                window.location.href = "index.html";
+            }
+
+            // Gestion du bouton de validation final
+validateBtn.addEventListener("click", function () {
+    // 1. On vérifie TOUTES les clés possibles de connexion
+    const userId = localStorage.getItem("user_id") || localStorage.getItem("userId");
+
+    
+
+    if (!userId) {
+        alert("Veuillez vous connecter pour finaliser votre achat !");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // 2. Si connecté, on continue la validation
+    this.textContent = "Validation...";
+    this.disabled = true;
+
+    const panierPourAPI = produitsAValider.map(p => ({
+        produit_id: p.id,
+        quantite: p.qte
+    }));
+
+    fetch("http://localhost:3000/valider-commande", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            utilisateur_id: userId,
+            panier: panierPourAPI
+        } )
+    })
+    .then(res => res.json())
+    .then(data => {
+        successMsg.style.display = "block";
+        successMsg.innerHTML = `✅ Commande n°<strong>${data.commande_id}</strong> confirmée !`;
+        validateBtn.style.display = "none";
+        
+        // On nettoie uniquement les données de commande, pas la session !
+        localStorage.removeItem("commande_finale");
+        localStorage.removeItem("panier_storage");
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Erreur lors de l'envoi de la commande.");
+        this.disabled = false;
+        this.textContent = "Confirmer l'achat";
+    });
+});
+
+
+
+        });
+    </script>
+</body>
+</html>

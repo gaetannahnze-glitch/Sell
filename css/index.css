@@ -4,11 +4,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 body {
     background-color: #f9f9f9;
     color: #333;
+    
 }
 
 /* Barre de navigation */
@@ -19,6 +21,7 @@ nav {
     padding: 20px 5%;
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
 }
 
 .logo {
@@ -50,7 +53,7 @@ nav ul li a:hover {
 /* Section Hero avec image d'arrière-plan */
 .hero {
     height: 80vh;
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../image/istockphoto-862254738-1024x1024.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../image/4.jpg');
     background-size: 100%;
     background-position: center;
     display: flex;

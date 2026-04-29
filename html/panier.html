@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Panier - Sell</title>
+    <link rel="stylesheet" href="../css/validerc.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Sell</div>
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            
+            <li id="auth-link"><a href="login.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 class="label">Votre Panier</h1>
+            
+            <div id="panier-vide" style="display:none; text-align:center; padding: 50px;">
+                <p>Votre panier est actuellement vide.</p>
+                <a href="pagep.html" class="btn" style="display:inline-block; width:auto; padding:10px 20px;">Continuer mes achats</a>
+            </div>
+    
+            <div id="panier-liste">
+            </div>
+    
+            <div id="recap-panier" class="card" style="margin-top: 20px; padding: 20px; display:none;">
+                <div class="total-block">
+                    <span class="total-label">Sous-total du panier</span>
+                    <span class="total-amount" id="total-panier">0 MAD</span>
+                </div>
+                <!-- Appel à la nouvelle fonction passerAuPaiement() -->
+                <button class="btn" onclick="passerAuPaiement()">Commander tout le panier</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sell</h3>
+                <p>Soyez tendance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Aide</h4>
+                <a href="#">Livraison</a>
+                <a href="#">Retours</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sell. Tous droits réservés.
+        </div>
+    </footer>
+
+<script src="../script/script.js"></script> <!-- Lien vers le script.js externe -->
+<script>
+
+const userId = localStorage.getItem("user_id");
+
+if (!userId) {
+    alert("Veuillez vous connecter avant de commander");
+    window.location.href = "login.html";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const panier = JSON.parse(localStorage.getItem("panier_storage")) || [];
+    const listeElement = document.getElementById("panier-liste");
+    const videElement = document.getElementById("panier-vide");
+    const recapElement = document.getElementById("recap-panier");
+    const totalElement = document.getElementById("total-panier");
+
+    if (panier.length === 0) {
+        videElement.style.display = "block";
+    } else {
+        recapElement.style.display = "block";
+        let totalGeneral = 0;
+
+        panier.forEach((item, index) => {
+            totalGeneral += item.prix * item.qte;
+            
+            // On crée une carte simplifiée pour chaque produit
+            listeElement.innerHTML += `
+    <div class="card" style="margin-bottom:15px; display:flex; align-items:center; padding:10px;">
+        <img src="${item.image}" style="width:80px; height:80px; object-fit:cover; border-radius:5px;">
+        
+        <div style="flex:1; margin-left:20px;">
+            <h3 style="margin:0;">${item.nom}</h3>
+            <p style="margin:5px 0; color:#d4af37;">
+                ${item.prix.toLocaleString()} MAD x ${item.qte}
+            </p>
+
+            <button onclick="supprimerProduit(${index})"
+                style="background:none; border:none; color:#e63946; cursor:pointer; font-size:0.8rem;">
+                Supprimer
+            </button>
+        </div>
+
+        <button class="btn" style="width:auto; padding:8px 15px;"
+            onclick="validerUnSeul(${index})">
+            Acheter
+        </button>
+    </div>
+`;
+
+            
+        });
+        totalElement.textContent = totalGeneral.toLocaleString() + " MAD";
+    }
+});
+
+// Les fonctions validerUnSeul et supprimerProduit sont maintenant dans script.js
+// Il est préférable de lier script.js en externe pour une meilleure gestion.
+
+</script>
+
+
+</body>
+</html>

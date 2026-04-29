@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Sell</title>
+    <link rel="stylesheet" href="../css/inscription.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 50px;
+            background: #ebebeb;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 350px;
+        }
+        .auth-container h2 { text-align: center; margin-bottom: 30px; font-family: 'Playfair Display', serif; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #666; font-size: 0.9rem; }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus { border-color: #d4af37; outline: none; }
+        .btn-auth {
+            width: 100%;
+            padding: 14px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .btn-auth:hover { background: #333; }
+        .auth-footer { text-align: center; margin-top: 20px; font-size: 0.85rem; color: #888; }
+        .auth-footer a { color: #d4af37; text-decoration: none; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Sell</div>
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            
+            <li id="auth-link"><a href="login.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <div class="auth-container">
+        <h2>Créer un compte</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="nom">Nom complet</label>
+                <input type="text" id="nom" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input type="email" id="email" placeholder="exemple@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-auth">S'inscrire</button>
+        </form>
+        <div class="auth-footer">
+            Déjà un compte ? <a href="login.html">Se connecter</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sell</h3>
+                <p>Soyez tendance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Aide</h4>
+                <a href="#">Livraison</a>
+                <a href="#">Retours</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sell. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const data = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                mot_de_passe: document.getElementById('password').value
+            };
+
+            fetch('http://localhost:3000/inscription', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data )
+            })
+            .then(res => res.json())
+            .then(resData => {
+                if (resData.userId) {
+                    alert("Inscription réussie ! Vous pouvez maintenant vous connecter.");
+                    window.location.href = "login.html";
+                } else {
+                    alert("Erreur : " + (resData.error || "Impossible de s'inscrire"));
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Erreur de connexion au serveur.");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+/* validerc.css */
+
+.main-content {
+    min-height: calc(100vh - 200px); /* Ajuste selon la taille du header/footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background-color: #fcfcfc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+/* Barre de navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d4af37; /* Couleur dorée */
+}
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Styles pour le conteneur de l'image dans la section de validation unique */
+.card #single-product-summary .image-placeholder {
+    width: 150px; /* Largeur fixe pour le conteneur de l'image */
+    height: 150px; /* Hauteur fixe pour le conteneur de l'image */
+    overflow: hidden; /* Cache tout ce qui dépasse */
+    border-radius: 8px; /* Bords arrondis pour l'esthétique */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Couleur de fond si l'image ne charge pas */
+    margin-right: 20px; /* Espacement avec le texte */
+}
+
+/* Styles pour l'image elle-même */
+.card #single-product-summary .image-placeholder img {
+    max-width: 100%; /* L'image ne dépassera pas la largeur de son conteneur */
+    max-height: 100%; /* L'image ne dépassera pas la hauteur de son conteneur */
+    object-fit: contain; /* Assure que l'image est entièrement visible sans être coupée */
+    display: block; /* Supprime l'espace sous l'image */
+}
+
+/* Ajustement pour le corps de la carte pour aligner les éléments */
+.card #single-product-summary .card-body {
+    flex: 1; /* Permet au corps de la carte de prendre l'espace restant */
+}
+
+/* S'assurer que la carte elle-même utilise flexbox pour un bon alignement */
+.card#single-product-summary {
+    display: flex;
+    align-items: flex-start; /* Aligne les éléments en haut */
+    padding: 20px;
+}
+
+/* Ajustement pour le texte de chargement si nécessaire */
+.card #single-product-summary #placeholderText {
+    font-size: 0.9em;
+    color: #888;
+}
+
+
+
+.image-placeholder {
+    flex: 1;
+    background: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Affiché par JS */
+}
+
+.card-body {
+    flex: 1.2;
+    padding: 20px;
+}
+
+/* Style des lignes d'info */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.divider {
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+.total-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.total-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d4af37;
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #d4af37;
+}
+
+.success-msg {
+    display: none;
+    margin-top: 20px;
+    color: #1a5c38;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .card { flex-direction: column; }
+    .image-placeholder { height: 250px; }
+}
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 50px 5% 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-section h4 {
+    margin-bottom: 15px;
+    color: #d4af37;
+}
+
+.footer-section a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #777;
+}

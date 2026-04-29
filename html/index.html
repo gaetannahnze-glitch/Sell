@@ -10,16 +10,17 @@
 <body>
     <nav>
         <div class="logo">Sell</div>
-        <ul>
-            <li><a href="#">Accueil</a></li>
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
             <li><a href="about.html">À propos</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Connexion</a></li>
+            <!-- On ajoute un ID ici pour le cibler facilement -->
+            <li id="auth-link"><a href="login.html">Connexion</a></li>
         </ul>
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-content" id="liste-produits">
             <h1>Bienvenue sur notre plateforme</h1>
             <p>Découvrez les tendances qui définissent votre style.</p>
             <button onclick="window.location.href='pagep.html'">Voir les produits</button>
@@ -122,6 +123,33 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 });
+
+// récupérer l'id de la catégorie depuis l'URL
+const params = new URLSearchParams(window.location.search);
+const categorie_id = params.get("categorie");
+
+// appel serveur
+fetch(`http://localhost:3000/produits/${categorie_id}`)
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById("liste-produits");
+
+    data.forEach(p => {
+        container.innerHTML += `
+            <div>
+                <h3>${p.nom}</h3>
+                <p>${p.prix} DH</p>
+                <button onclick="voirProduit(${p.id})">Voir les produits</button>
+            </div>
+        `;
+    });
+});
+
+function voirProduit(id){
+    window.location.href = `pagep.html?id=${id}`;
+}
+
+
     </script>
 </body>
 </html>
